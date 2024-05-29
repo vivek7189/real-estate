@@ -1,27 +1,50 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
+import { FaBuilding, FaHome, FaKey, FaMapMarkedAlt, FaStore, FaUserTie } from 'react-icons/fa';
 
 const Hero = () => {
+  const [activeTab, setActiveTab] = useState('Buy Properties');
+
+  const tabs = [
+    { name: 'New Projects', placeholder: 'Search new development projects...', icon: <FaBuilding /> },
+    { name: 'Buy ', placeholder: 'Search properties to buy...', icon: <FaHome /> },
+    { name: 'Rent ', placeholder: 'Search properties for rent...', icon: <FaKey /> },
+    { name: 'Plot & Land', placeholder: 'Search for plots and land...', icon: <FaMapMarkedAlt /> },
+    { name: 'Commercial ', placeholder: 'Search for commercial spaces...', icon: <FaStore /> },
+    { name: 'Find Agents', placeholder: 'Find real estate agents...', icon: <FaUserTie /> }
+  ];
+
+  const [placeholderText, setPlaceholderText] = useState('Search properties to buy...');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab.name);
+    setPlaceholderText(tab.placeholder);
+  };
+
   return (
     <div className="relative bg-cover bg-center text-white" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1599423300746-b62533397364?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fHJlYWwlMjBlc3RhdGV8ZW58MHx8fHwxNjg0NTE1MzIz&ixlib=rb-4.0.3&q=80&w=1080')" }}>
-      <div className="bg-black bg-opacity-50 h-[60vh] flex flex-col justify-center items-center px-4 sm:px-8">
+      <div className="bg-gray-900 bg-opacity-80 h-[60vh] flex flex-col justify-center items-center px-4 sm:px-8">
         <div className="text-center w-full max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Real Estate Made Real Easy</h1>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Real Estate Made Real Easy</h1>
+          <div className="tabs mb-8 flex flex-wrap justify-center">
+            {tabs.map((tab) => (
+              <button
+                key={tab.name}
+                className={`tab-item flex items-center justify-center py-2 px-4 m-1 rounded-lg transition duration-300 ease-in-out font-medium text-sm sm:text-base ${activeTab === tab.name ? 'bg-green-700 hover:bg-green-800 text-white' : 'text-green-200 hover:bg-green-600'}`}
+                onClick={() => handleTabClick(tab)}
+              >
+                {tab.icon}
+                <span className="ml-2">{tab.name}</span>
+              </button>
+            ))}
+          </div>
+          <div className="w-full max-w-lg mx-auto flex flex-col sm:flex-row items-center gap-2">
             <input
               type="text"
-              placeholder='Search by Locality "Andheri East Overview"'
-              className="p-3 rounded-lg w-full text-gray-800 sm:flex-1"
+              placeholder={placeholderText}
+              className="p-3 rounded-lg w-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
-            <button className="p-3 bg-yellow-500 rounded-lg text-gray-900 font-bold hover:bg-yellow-600 w-full sm:w-auto sm:flex-none sm:mx-2">
-              Near me
-            </button>
-            <select className="p-3 rounded-lg text-gray-800 bg-white w-full sm:w-auto sm:flex-1 sm:mx-2">
-              <option value="">Budget</option>
-            </select>
-            <select className="p-3 rounded-lg text-gray-800 bg-white w-full sm:w-auto sm:flex-1 sm:mx-2">
-              <option value="">Property Type</option>
-            </select>
-            <button className="p-3 bg-yellow-500 rounded-lg text-gray-900 font-bold hover:bg-yellow-600 w-full sm:w-auto sm:flex-none sm:mx-2">
+            <button className="p-3 bg-green-700 hover:bg-green-800 text-white font-bold rounded-lg transition duration-300 ease-in-out w-full sm:w-auto">
               Search
             </button>
           </div>

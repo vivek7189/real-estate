@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { FaHome, FaBuilding, FaInfoCircle, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -10,18 +11,20 @@ const Header = () => {
       <div className="relative z-10 flex justify-between items-center py-4 px-6">
         <h1 className="text-2xl font-bold">Real Estate App</h1>
         <nav className="hidden md:flex space-x-6">
-          <a href="#" className="flex items-center space-x-2 hover:text-yellow-500">
+        <Link href="/" className="flex items-center space-x-2 hover:text-yellow-500">
             <FaHome />
             <span>Home</span>
-          </a>
-          <a href="#" className="flex items-center space-x-2 hover:text-yellow-500">
+          </Link>
+          <Link href="/listing" className="flex items-center space-x-2 hover:text-yellow-500">
             <FaBuilding />
             <span>Properties</span>
-          </a>
-          <a href="#" className="flex items-center space-x-2 hover:text-yellow-500">
+          </Link>
+          <Link href="/postad" className="flex items-center space-x-2 hover:text-yellow-500">
+        
             <FaInfoCircle />
-            <span>About Us</span>
-          </a>
+            <span>Post ad</span>
+        
+          </Link>
           <a href="#" className="flex items-center space-x-2 hover:text-yellow-500">
             <FaSignInAlt />
             <span>Login</span>

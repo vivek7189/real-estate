@@ -31,3 +31,24 @@ body {
     text-wrap: balance;
   }
 }
+/* .tab-item {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 8px;
+  border-radius: 5px;
+  background: transparent;
+} */
+
+.tab-item:hover {
+  background-color: #28527a;
+}
+
+.bg-gray-900 {
+  background-color: #2a2e35;
+}
+
+.bg-opacity-80 {
+  opacity: 0.8;
+}
